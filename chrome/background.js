@@ -10,16 +10,16 @@ function toLocalISOString(date) {
 function addArticleToTree(title, url, parentUrl) {
     // If there's no parent, this is a root article
     if (!parentUrl) {
-      articlesTree[url] = articlesTree[url] || { title, children: {} };
+      articlesTree[url] = articlesTree[url] || { title, url, children: {} };
     } else {
       // Recursively search for the parent node in the tree
       const parentNode = findParentNode(articlesTree, parentUrl);
       if (parentNode) {
         // Add the article under its parent
-        parentNode.children[url] = parentNode.children[url] || { title, children: {} };
+        parentNode.children[url] = parentNode.children[url] || { title, url, children: {} };
       } else {
         // If the parent node is not found, treat it as a root article
-        articlesTree[url] = articlesTree[url] || { title, children: {} };
+        articlesTree[url] = articlesTree[url] || { title, url, children: {} };
       }
     }
     // Save the updated tree to storage

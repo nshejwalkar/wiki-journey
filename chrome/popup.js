@@ -82,14 +82,17 @@ document.addEventListener('DOMContentLoaded', function() {
             .attr("fill", d => d.children ? "#555" : "#999")
             .attr("r", 2.5);
 
-        node.append("text")
-            .attr("dy", "0.31em")
-            .attr("x", d => d.children ? -6 : 6)
-            .attr("text-anchor", d => d.children ? "end" : "start")
-            .text(d => d.data.title)
-            .attr("fill", "black") // Set the text color
-            .clone(true).lower()
-            .attr("stroke", "white"); // Remove the stroke or set to a contrasting color if needed
+        node.append("a")
+                .attr("xlink:href", d => d.data.url || null)
+                .attr("target", "_blank") // Opens link in a new tab
+            .append("text")
+                .attr("dy", "0.31em")
+                .attr("x", d => d.children ? -6 : 6)
+                .attr("text-anchor", d => d.children ? "end" : "start")
+                .text(d => d.data.title)
+                .attr("fill", "black") // Set the text color
+                .clone(true).lower()
+                .attr("stroke", "white"); // Remove the stroke or set to a contrasting color if needed
           
 
         // Add this SVG to your popup
